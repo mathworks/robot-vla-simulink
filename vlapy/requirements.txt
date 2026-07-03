@@ -1,0 +1,38 @@
+# Vision-Language-Action (VLA) Model Requirements
+# ================================================
+# Dependencies for running Octo and RT1-X models
+#
+# Installation:
+#   pip install -r requirements.txt -c constraints.txt
+#
+# Note: Use constraints.txt to pin specific versions for
+#       reproducibility and compatibility across environments
+
+
+# TensorFlow deep learning framework
+tensorflow==2.15.0
+
+# JAX numerical computing library
+jax==0.4.23
+
+# JAX library for CPU/GPU/TPU support
+jaxlib==0.4.23
+
+# Flax neural network library for JAX
+flax==0.8.1
+
+# Deep learning image processing library
+dlimp@git+https://github.com/kvablack/dlimp@d08da3852c149548aaa8551186d619d87375df08
+
+# Probability distributions library for JAX
+distrax==0.1.5
+
+# Hugging Face transformers library
+transformers==4.38.2
+
+# 3D spatial transformations library
+transforms3d==0.4.2
+
+
+tensorflow-hub==0.16.1
+tf-agents==0.19.0

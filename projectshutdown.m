@@ -1,0 +1,6 @@
+rmpath("data")
+rmpath("images")
+rmpath("scenarios")
+rmpath("vlapy")
+rmpath("test")
+terminate(pyenv)

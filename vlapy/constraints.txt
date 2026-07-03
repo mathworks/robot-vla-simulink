@@ -1,0 +1,17 @@
+# constraints.txt pins the exact versions of all dependencies to guarantee
+# reproducible environments and prevent unexpected changes from upstream package
+# updates.
+
+# ML data types
+ml-dtypes==0.2.0
+
+# Scientific computing libraries
+numpy==1.26.4
+scipy<1.13
+
+# Statistical inference in TensorFlow
+tensorflow_probability==0.23.0
+
+# setuptools<82 required because pkg_resources was removed in
+# setuptools 82 and TensorFlow Hub still depends on it
+setuptools<82
