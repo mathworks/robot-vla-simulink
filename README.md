@@ -1,7 +1,7 @@
 # Control Robot Manipulator Using Vision-Language-Action (VLA) Model in Simulink
 
-[![View Control Robot Manipulator Using Vision-Language-Action (VLA) Model in Simulink on File Exchange](https://www.mathworks.com/matlabcentral/images/matlab-file-exchange.svg)](https://www.mathworks.com/matlabcentral/fileexchange/####-control-robot-manipulator-using-vision-language-action-vla-model-in-simulink)
-[![Open in MATLAB Online](https://www.mathworks.com/images/responsive/global/open-in-matlab-online.svg)](https://matlab.mathworks.com/open/github/v1?repo=mathworks/vision-language-action-models-in-simulink&project=VisionLanguageActionModelsInSimulink.prj&file=GettingStarted.mlx)
+[![View Control Robot Manipulator Using Vision-Language-Action (VLA) Model in Simulink on File Exchange](https://www.mathworks.com/matlabcentral/images/matlab-file-exchange.svg)](https://www.mathworks.com/matlabcentral/fileexchange/184183-vision-language-action-vla-models-in-simulink)
+[![Open in MATLAB Online](https://www.mathworks.com/images/responsive/global/open-in-matlab-online.svg)](https://matlab.mathworks.com/open/fileexchange/v1?id=184183)
 
 Vision-Language-Action (VLA) models take a camera image and a natural language instruction (e.g., "put banana on plate") and predict robot actions directly, without task-specific motion planning. This makes them a promising approach for general-purpose robot manipulation, where a single model can handle a variety of tasks described in natural language.
 
@@ -16,6 +16,7 @@ This project provides a general framework for integrating VLA models into Simuli
 - [Adapting the Example](#adapting-the-example)
 - [Verification and Validation](#verification-and-validation)
 - [Discussion](#discussion)
+- [Feedback](#feedback)
 - [References](#references)
 - [License](#license)
 - [Community Support](#community-support)
@@ -172,7 +173,7 @@ The VLA model outputs a relative action (position and rotation deltas), not an a
 
 ![Robot Dynamics Control|697](images/RobotDynamicsControl.png)
 
-A [Coordinate Transformation Conversion](https://www.mathworks.com/help/robotics/ref/coordinatetransformationconversionblock.html) block first converts `refEEPose` from Euler angles to a homogeneous transform, which the [Task-Space Motion Model](https://www.mathworks.com/help/robotics/ug/task-space-motion-model.html) block uses to compute joint configurations, velocities, and accelerations through proportional-derivative Jacobian-transpose control. The `grippercontrol` block takes the binarized gripper command (1: open, -1: closed), scales it to joint-space targets, and runs a PD position control loop at the simulation frequency to drive the fingers. The [Get Transform](https://www.mathworks.com/help/robotics/ref/gettransformblock.html) block then computes forward kinematics from the joint configuration, and a second [Coordinate Transformation Conversion](https://www.mathworks.com/help/robotics/ref/coordinatetransformationconversionblock.html) block converts the result back to a 6-element end-effector pose (position and orientation), which feeds back to `End-Effector Reference` for the next step.
+A [Coordinate Transformation Conversion](https://www.mathworks.com/help/nav/ref/coordinatetransformationconversion.html) block first converts `refEEPose` from Euler angles to a homogeneous transform, which the [Task-Space Motion Model](https://www.mathworks.com/help/robotics/ug/task-space-motion-model.html) block uses to compute joint configurations, velocities, and accelerations through proportional-derivative Jacobian-transpose control. The `grippercontrol` block takes the binarized gripper command (1: open, -1: closed), scales it to joint-space targets, and runs a PD position control loop at the simulation frequency to drive the fingers. The [Get Transform](https://www.mathworks.com/help/robotics/ref/gettransformblock.html) block then computes forward kinematics from the joint configuration, and a second [Coordinate Transformation Conversion](https://www.mathworks.com/help/nav/ref/coordinatetransformationconversion.html) block converts the result back to a 6-element end-effector pose (position and orientation), which feeds back to `End-Effector Reference` for the next step.
 
 **Unreal3DAnimation**
 
@@ -250,6 +251,14 @@ VLA models are advancing rapidly. Newer models like [OpenVLA](https://github.com
 Current VLA models generalize best within their training distribution: familiar tasks, robot embodiments, and visual environments. Performance degrades out of distribution, though targeted fine-tuning can close much of this gap: models like GR00T N1 can be adapted to new robot setups with a handful of demonstrations.
 
 Evaluating in simulation introduces gaps: textures, lighting, and contact dynamics differ from real hardware, which can affect model predictions. In practice, however, policies that perform well in simulation tend to perform well in the real world [3], making simulation a scalable proxy for hardware evaluation.
+
+## Feedback
+
+Tried this example? We'd love your feedback!
+
+Share your experience to help us prioritize what to improve next - takes less than 5 minutes.
+
+Give feedback ➜ [Feedback on Vision Language Action Models in Simulink](https://www.surveymonkey.com/r/GCHTJXX)
 
 ## References
 
